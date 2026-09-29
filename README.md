@@ -84,3 +84,34 @@ Prediction
 SHAP Explainability
        ↓
 Interpretable Result
+```
+## 🏗️ Project Architecture
+```
+RakshaMitra/
+│
+├── Frontend/
+│   ├── public/
+│   ├── src/
+│   ├── AGENTS.md
+│   ├── INTEGRATION.md
+│   ├── README.md
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── bun.lock
+│   ├── bunfig.toml
+│   ├── components.json
+│   ├── eslint.config.js
+│   ├── nitro.config.ts
+│   ├── tsconfig.json
+│   └── vite.config.ts
+│
+├── ml-engine/
+│   ├── api/
+│   ├── data/
+│   ├── data_generator.py
+│   ├── train_model.py
+│   ├── requirements.txt
+│   ├── vercel.json
+│   └── README.md
+│
+└── README.md
