@@ -1,0 +1,630 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Design system definition.
+ *
+ * The @theme inline block maps CSS custom properties to Tailwind utility
+ * classes (e.g. --color-primary -> bg-primary, text-primary).
+ *
+ * The :root and .dark blocks define the actual color values using oklch.
+ * All colors MUST use oklch format.
+ *
+ * To add a new semantic color:
+ * 1. Add the variable to :root (light value) and .dark (dark value)
+ * 2. Register it in @theme inline as --color-<name>: var(--<name>)
+ */
+
+@theme {
+  --color-ink: oklch(0.19 0.028 260);
+  --color-panel: oklch(0.25 0.026 262);
+  --color-elev: oklch(0.3 0.026 262);
+  --color-line: oklch(0.36 0.03 262);
+  --color-paper: oklch(0.93 0.011 250);
+  --color-muted-ink: oklch(0.66 0.026 255);
+  --color-flag: oklch(0.83 0.019 254);
+  --color-accent-gold: oklch(0.75 0.11 78);
+  --color-low: oklch(0.7 0.11 158);
+  --color-mid: oklch(0.75 0.11 78);
+  --color-high: oklch(0.68 0.14 47);
+  --color-red-alert: oklch(0.6 0.17 25);
+  --font-display: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --ease-duty: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+@keyframes lamp {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+@keyframes riselamp {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@utility lamp {
+  animation: lamp 2.4s var(--ease-duty) infinite;
+}
+
+@utility lamp-slow {
+  animation: lamp 3.6s var(--ease-duty) infinite;
+}
+
+@utility rise {
+  animation: riselamp 0.5s var(--ease-duty) both;
+}
+
+@theme inline {
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.129 0.042 264.695);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.129 0.042 264.695);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.129 0.042 264.695);
+  --primary: oklch(0.208 0.042 265.755);
+  --primary-foreground: oklch(0.984 0.003 247.858);
+  --secondary: oklch(0.968 0.007 247.896);
+  --secondary-foreground: oklch(0.208 0.042 265.755);
+  --muted: oklch(0.968 0.007 247.896);
+  --muted-foreground: oklch(0.554 0.046 257.417);
+  --accent: oklch(0.968 0.007 247.896);
+  --accent-foreground: oklch(0.208 0.042 265.755);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.984 0.003 247.858);
+  --border: oklch(0.929 0.013 255.508);
+  --input: oklch(0.929 0.013 255.508);
+  --ring: oklch(0.704 0.04 256.788);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.984 0.003 247.858);
+  --sidebar-foreground: oklch(0.129 0.042 264.695);
+  --sidebar-primary: oklch(0.208 0.042 265.755);
+  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-accent: oklch(0.968 0.007 247.896);
+  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
+  --sidebar-border: oklch(0.929 0.013 255.508);
+  --sidebar-ring: oklch(0.704 0.04 256.788);
+}
+
+.dark {
+  --background: oklch(0.129 0.042 264.695);
+  --foreground: oklch(0.984 0.003 247.858);
+  --card: oklch(0.208 0.042 265.755);
+  --card-foreground: oklch(0.984 0.003 247.858);
+  --popover: oklch(0.208 0.042 265.755);
+  --popover-foreground: oklch(0.984 0.003 247.858);
+  --primary: oklch(0.929 0.013 255.508);
+  --primary-foreground: oklch(0.208 0.042 265.755);
+  --secondary: oklch(0.279 0.041 260.031);
+  --secondary-foreground: oklch(0.984 0.003 247.858);
+  --muted: oklch(0.279 0.041 260.031);
+  --muted-foreground: oklch(0.704 0.04 256.788);
+  --accent: oklch(0.279 0.041 260.031);
+  --accent-foreground: oklch(0.984 0.003 247.858);
+  --destructive: oklch(0.704 0.191 22.216);
+  --destructive-foreground: oklch(0.984 0.003 247.858);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.551 0.027 264.364);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.208 0.042 265.755);
+  --sidebar-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-accent: oklch(0.279 0.041 260.031);
+  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.551 0.027 264.364);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+  }
+}
+/* =========================================================
+   RAKSHAMITRA — MOUSE TRACKED ATMOSPHERIC FLOW
+   ========================================================= */
+
+.mouse-flow-background {
+  --mouse-x: 50%;
+  --mouse-y: 50%;
+
+  position: absolute;
+  inset: 0;
+
+  overflow: hidden;
+
+  pointer-events: none;
+
+  z-index: 0;
+
+  background:
+    radial-gradient(
+      circle at 50% 45%,
+      oklch(0.26 0.035 260 / 0.14),
+      transparent 38%
+    );
+}
+
+/* ---------------------------------------------------------
+   MAIN GOLD ATMOSPHERIC FIELD
+--------------------------------------------------------- */
+
+.mouse-flow-main {
+  position: absolute;
+
+  width: 52vw;
+  height: 52vw;
+
+  min-width: 420px;
+  min-height: 420px;
+
+  max-width: 850px;
+  max-height: 850px;
+
+  left: var(--mouse-x);
+  top: var(--mouse-y);
+
+  transform:
+    translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      oklch(0.78 0.13 78 / 0.075) 0%,
+      oklch(0.72 0.10 75 / 0.035) 28%,
+      transparent 68%
+    );
+
+  filter: blur(65px);
+
+  opacity: 0.9;
+
+  transition:
+    opacity 0.8s ease;
+
+  animation:
+    mouse-flow-breathe 9s ease-in-out infinite;
+}
+
+/* ---------------------------------------------------------
+   COOL BLUE FIELD
+--------------------------------------------------------- */
+
+.mouse-flow-cool {
+  position: absolute;
+
+  width: 42vw;
+  height: 42vw;
+
+  min-width: 340px;
+  min-height: 340px;
+
+  max-width: 700px;
+  max-height: 700px;
+
+  left: calc(var(--mouse-x) + 13%);
+  top: calc(var(--mouse-y) - 8%);
+
+  transform:
+    translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      oklch(0.35 0.08 255 / 0.065) 0%,
+      oklch(0.30 0.05 250 / 0.025) 35%,
+      transparent 70%
+    );
+
+  filter: blur(90px);
+
+  opacity: 0.75;
+
+  animation:
+    mouse-flow-drift 14s ease-in-out infinite;
+}
+
+/* ---------------------------------------------------------
+   HORIZONTAL FLOW
+--------------------------------------------------------- */
+
+.mouse-flow-stream {
+  position: absolute;
+
+  width: 75%;
+  height: 180px;
+
+  left: 12%;
+
+  border-radius: 50%;
+
+  filter: blur(55px);
+
+  opacity: 0.16;
+
+  transform-origin: center;
+
+  pointer-events: none;
+}
+
+.mouse-flow-stream-one {
+  top: 38%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      oklch(0.78 0.13 78 / 0.10),
+      oklch(0.78 0.13 78 / 0.035),
+      transparent
+    );
+
+  transform:
+    translateX(
+      calc(
+        (var(--mouse-x) - 50%) * 0.12
+      )
+    )
+    rotate(-5deg);
+
+  animation:
+    tactical-stream-one 13s ease-in-out infinite;
+}
+
+.mouse-flow-stream-two {
+  top: 58%;
+
+  width: 60%;
+
+  left: 22%;
+
+  opacity: 0.10;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      oklch(0.45 0.07 250 / 0.08),
+      transparent
+    );
+
+  transform:
+    translateX(
+      calc(
+        (var(--mouse-x) - 50%) * -0.08
+      )
+    )
+    rotate(4deg);
+
+  animation:
+    tactical-stream-two 17s ease-in-out infinite;
+}
+
+/* ---------------------------------------------------------
+   MOUSE FOCUS
+--------------------------------------------------------- */
+
+.mouse-flow-focus {
+  position: absolute;
+
+  width: 180px;
+  height: 180px;
+
+  left: var(--mouse-x);
+  top: var(--mouse-y);
+
+  transform:
+    translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      oklch(0.78 0.13 78 / 0.045) 0%,
+      transparent 65%
+    );
+
+  filter: blur(20px);
+
+  opacity: 0.7;
+}
+
+/* ---------------------------------------------------------
+   ANIMATION
+--------------------------------------------------------- */
+
+@keyframes mouse-flow-breathe {
+  0%,
+  100% {
+    scale: 0.96;
+    opacity: 0.72;
+  }
+
+  50% {
+    scale: 1.05;
+    opacity: 0.95;
+  }
+}
+
+@keyframes mouse-flow-drift {
+  0%,
+  100% {
+    transform:
+      translate(-2%, 1%)
+      scale(0.96);
+  }
+
+  50% {
+    transform:
+      translate(4%, -3%)
+      scale(1.04);
+  }
+}
+
+@keyframes tactical-stream-one {
+  0%,
+  100% {
+    margin-left: -2%;
+    opacity: 0.10;
+  }
+
+  50% {
+    margin-left: 3%;
+    opacity: 0.18;
+  }
+}
+
+@keyframes tactical-stream-two {
+  0%,
+  100% {
+    margin-left: 2%;
+    opacity: 0.07;
+  }
+
+  50% {
+    margin-left: -3%;
+    opacity: 0.13;
+  }
+}
+
+/* ---------------------------------------------------------
+   MOBILE
+--------------------------------------------------------- */
+
+@media (max-width: 768px) {
+  .mouse-flow-main {
+    width: 100vw;
+    height: 100vw;
+
+    min-width: 300px;
+    min-height: 300px;
+
+    filter: blur(80px);
+
+    opacity: 0.45;
+  }
+
+  .mouse-flow-cool {
+    width: 80vw;
+    height: 80vw;
+
+    min-width: 260px;
+    min-height: 260px;
+
+    opacity: 0.35;
+  }
+
+  .mouse-flow-stream {
+    opacity: 0.06;
+  }
+
+  .mouse-flow-focus {
+    display: none;
+  }
+}
+
+/* ---------------------------------------------------------
+   REDUCED MOTION
+--------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .mouse-flow-main,
+  .mouse-flow-cool,
+  .mouse-flow-stream {
+    animation: none;
+  }
+}
+/* =========================================================
+   RAKSHAMITRA — TACTICAL HOVER GLOW
+   ========================================================= */
+
+.tactical-hover {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+
+  border-color: var(--color-line);
+
+  transition:
+    transform 220ms var(--ease-duty),
+    border-color 220ms ease,
+    box-shadow 260ms ease,
+    background-color 220ms ease;
+}
+
+/* Soft light layer */
+.tactical-hover::before {
+  content: "";
+
+  position: absolute;
+  inset: -1px;
+
+  z-index: -1;
+
+  border-radius: inherit;
+
+  background:
+    radial-gradient(
+      420px circle at var(--hover-x, 50%) var(--hover-y, 50%),
+      oklch(0.78 0.13 78 / 0.13),
+      transparent 55%
+    );
+
+  opacity: 0;
+
+  transition: opacity 260ms ease;
+
+  pointer-events: none;
+}
+
+/* Very subtle top shine */
+.tactical-hover::after {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: -100%;
+
+  width: 70%;
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      oklch(0.78 0.13 78 / 0.65),
+      transparent
+    );
+
+  opacity: 0;
+
+  transition:
+    left 600ms var(--ease-duty),
+    opacity 250ms ease;
+
+  pointer-events: none;
+}
+
+/* Desktop hover */
+@media (hover: hover) and (pointer: fine) {
+  .tactical-hover:hover {
+    transform: translateY(-2px);
+
+    border-color:
+      oklch(0.78 0.13 78 / 0.42);
+
+    box-shadow:
+      0 10px 35px oklch(0.08 0.02 260 / 0.28),
+      0 0 24px oklch(0.78 0.13 78 / 0.07);
+  }
+
+  .tactical-hover:hover::before {
+    opacity: 1;
+  }
+
+  .tactical-hover:hover::after {
+    left: 130%;
+    opacity: 1;
+  }
+}
+
+/* Active press */
+.tactical-hover:active {
+  transform: translateY(0) scale(0.995);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .tactical-hover {
+    transition: border-color 120ms ease,
+      box-shadow 120ms ease;
+  }
+
+  .tactical-hover:hover {
+    transform: none;
+  }
+
+  .tactical-hover::after {
+    display: none;
+  }
+}
